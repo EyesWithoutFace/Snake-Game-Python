@@ -108,7 +108,11 @@ def gameLoop(): #game loop for when you fail option to restart
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             Length_of_snake += 1
             points += 10
-            print('Your score: ' + str(points))
+
+        if points > 0:
+            text = font_style.render('Your score: ' + str(points), white, (255, 255, 255))
+            dis.blit(text, (50,50)) #render text score once score goes up from zero
+        pygame.display.update()
 
 
         clock.tick(snake_speed)
