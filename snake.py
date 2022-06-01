@@ -46,6 +46,7 @@ def gameLoop(): #game loop for when you fail option to restart
 #random placement of food
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+    points = 0
 
     while not game_over:
 
@@ -102,11 +103,13 @@ def gameLoop(): #game loop for when you fail option to restart
 
 
         pygame.display.update()
-
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             Length_of_snake += 1
+            points += 10
+            print('Your score: ' + str(points))
+
 
         clock.tick(snake_speed)
 
