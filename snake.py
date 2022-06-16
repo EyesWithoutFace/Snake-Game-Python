@@ -93,7 +93,7 @@ def gameLoop(): #game loop for when you fail option to restart
         dis.fill(black) #fill background
         pygame.draw.rect(dis, blue, [foodx, foody, snake_block, snake_block])
         #Head flipping
-        print ("Tentative head is at " + str(x1) +"," + str(y1)+". \n")
+        #print ("Tentative head is at " + str(x1) +"," + str(y1)+". \n")
         if len(snake_List)>0:
         	if [x1,y1] == snake_List[len(snake_List)-2] : # This is to prevent the snake from moving inside its body
         		#Flip the list 
@@ -102,7 +102,7 @@ def gameLoop(): #game loop for when you fail option to restart
         		x1 = (x1+x1_change)% dis_width
         		y1 = (y1+y1_change)% dis_height
         		snake_List.reverse()
-        print ("Chosen head is at " + str(x1) +"," + str(y1)+". \n")		
+        #print ("Chosen head is at " + str(x1) +"," + str(y1)+". \n")		
         snake_Head = []
         snake_Head.append(x1)
         snake_Head.append(y1)
@@ -115,7 +115,7 @@ def gameLoop(): #game loop for when you fail option to restart
         for x in snake_List[:-1]:
             if x == snake_Head: #if snake head touches itself game over
                 game_close = True
-        print (snake_List)
+        #print (snake_List)
         our_snake(snake_block, snake_List)
 
 
