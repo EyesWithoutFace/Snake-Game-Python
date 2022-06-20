@@ -3,7 +3,7 @@ A simple snake game in python terminal
 
 ## Requirements
 User must have python3 and pygame installed.If you don't have pygame you can install with pip.
-Install pygame
+Install pygame:
 `pip install pygame`
 
 ### Usage
