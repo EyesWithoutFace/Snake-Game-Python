@@ -80,25 +80,42 @@ def gameLoop(): #game loop for when you fail option to restart
                 elif event.key == pygame.K_s:
                     y1_change = snake_block
                     x1_change = 0
-
-        if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
-            game_close = True
-        x1 += x1_change
-        y1 += y1_change
+    #Commenting these out becuase these yield game over conditions
+        #if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
+        #    game_close = True
+        if len(snake_List)>0:  # This needs to be found before making the change otherwise mixups might happen.
+            x1 = snake_List[-1][0]
+            y1 = snake_List[-1][1]
+        x1 = (x1+x1_change)% dis_width   #This is the modulus operator ,this ensures that the x1 value is always in display limits.Similar for y1
+        
+        y1 = (y1+y1_change)% dis_height
 
         dis.fill(black) #fill background
         pygame.draw.rect(dis, blue, [foodx, foody, snake_block, snake_block])
+        #Head flipping
+        #print ("Tentative head is at " + str(x1) +"," + str(y1)+". \n")
+        if len(snake_List)>0:
+        	if [x1,y1] == snake_List[len(snake_List)-2] : # This is to prevent the snake from moving inside its body
+        		#Flip the list 
+        		x1 = snake_List[0][0]
+        		y1 = snake_List[0][1]
+        		x1 = (x1+x1_change)% dis_width
+        		y1 = (y1+y1_change)% dis_height
+        		snake_List.reverse()
+        #print ("Chosen head is at " + str(x1) +"," + str(y1)+". \n")		
         snake_Head = []
         snake_Head.append(x1)
         snake_Head.append(y1)
         snake_List.append(snake_Head)
         if len(snake_List) > Length_of_snake:
             del snake_List[0]
-
+            #Inertia solution . This ensures that the snake's head cannot travel inside its body.OPTION 1 Ignore the input .Comment out if you don't want this one.
+        	   
+        #Self Hitting 
         for x in snake_List[:-1]:
             if x == snake_Head: #if snake head touches itself game over
                 game_close = True
-
+        #print (snake_List)
         our_snake(snake_block, snake_List)
 
 
